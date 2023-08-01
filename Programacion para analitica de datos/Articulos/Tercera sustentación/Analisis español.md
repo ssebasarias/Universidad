@@ -1,0 +1,6 @@
+
+El artículo "The impact of consumer perceived value on repeat purchase intention based on online reviews: by the method of text mining" examina cómo el valor percibido por los clientes afecta su intención de repetir una compra en línea. Utilizando técnicas de minería de texto, los autores analizaron más de 6,200 comentarios de clientes en línea de una tienda minorista china de productos electrónicos. Los resultados sugieren que el valor percibido por los clientes tiene un impacto significativo en su intención de repetir la compra en línea, mientras que la satisfacción del cliente no tiene un impacto directo en el valor percibido.
+
+Los autores encontraron que los factores que influyen en el valor percibido incluyen la calidad del producto, el precio, la conveniencia y el servicio al cliente. Por lo tanto, los minoristas en línea pueden mejorar el valor percibido al prestar atención a estos factores y, a su vez, aumentar la intención de repetir la compra.
+
+En general, el estudio proporciona información valiosa sobre cómo el valor percibido influye en la intención de repetir la compra en línea y destaca la importancia de mejorar la experiencia del cliente para aumentar la fidelidad del cliente. Los resultados pueden ser útiles para minoristas en línea y otros negocios que buscan mejorar la satisfacción del cliente y aumentar las ventas en línea.

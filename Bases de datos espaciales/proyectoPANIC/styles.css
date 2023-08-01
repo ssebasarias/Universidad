@@ -1,0 +1,98 @@
+/* Estilos para el cuerpo de la página */
+body {
+  background-color: #f6f6f6;
+  font-family: Arial, sans-serif;
+}
+
+/* Estilos para el encabezado */
+header {
+  background-color: #333;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+header h1 {
+  margin: 0;
+}
+
+header nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+header nav ul li {
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+header nav ul li:last-child {
+  margin-right: 0;
+}
+
+header nav ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s ease;
+}
+
+header nav ul li a:hover {
+  background-color: #666;
+}
+
+/* Estilos para el contenido principal */
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+main h2 {
+  margin-top: 0;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+input,
+select {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid #ccc;
+}
+
+button[type="submit"] {
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #666;
+}
+
+#map {
+  height: 500px;
+  width: 100%;
+}

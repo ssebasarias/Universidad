@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<link rel="stylesheet" href="./styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro de Participante - Proyecto PANIC</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Proyecto PANIC</h1>
+      <nav>
+        <ul>
+          <li><a href="./main.html">Inicio</a></li>
+          <li><a href="./registroParticipantes.html">Registro de Participante</a></li>
+          <li><a href="#">Consultar Datos</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <h2>Registro de Nuevo Participante</h2>
+      <form method="POST" action="conexion.php">
+        <div class="form-group">
+          <label for="nombre">Nombre Completo:</label>
+          <input type="text" name="nombre" id="nombre" required />
+        </div>
+        <div class="form-group">
+          <label for="id_personal">Identificación Personal:</label>
+          <input type="text" name="id_personal" id="id_personal" required />
+        </div>
+        <div class="form-group">
+          <label for="correo">Correo:</label>
+          <input type="email" name="correo" id="correo" required />
+        </div>
+        <div class="form-group">
+          <label for="estado_salud">Estado de Salud:</label>
+          <select name="estado_salud" id="estado_salud" required>
+            <option value="Bueno">Bueno</option>
+            <option value="Regular">Regular</option>
+            <option value="Malo">Malo</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="discapacidad">Discapacidad:</label>
+          <select name="discapacidad" id="discapacidad" required>
+            <option value="Si">Si</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="telefono">Teléfono Propio:</label>
+          <input type="tel" name="telefono" id="telefono" required />
+        </div>
+        <div class="form-group">
+          <label for="tel_conocido">Teléfono de Conocido:</label>
+          <input type="tel" name="tel_conocido" id="tel_conocido" required />
+        </div>
+        <div class="form-group">
+          <button type="submit">Registrar Participante</button>
+        </div>
+      </form>
+    </main>
+  </body>
+</html>
