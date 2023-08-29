@@ -36,10 +36,17 @@ __________________
 * poweroff: para apagar verdaderamente la maquina
 * clear: para limpiar la pantalla o eliminar los comandos que hice anteriormente
 * ifconfing (es un comando que muestra las caracteristicas de la tarjeta de red) __nota: solo funciona si se tien intalado el paquete net-tools__
-* 
+* ssh user@IP (para conectarse remotamente a un servidor) ejemplo: ssh maria@192.168.0.85
+* ctrl + alt + f1 o fn (para intercambiar entre terminales)
 
 ## COMANDOS WINDOWS
 * ping (para saber si estoy conectado a un dispositivo o una red) __ejemplo: ping 10.0.2.15__
 
 ## APLICACIONES 
 * PuTTY (herramienta que ayuda a conectarse entre dispositivos usando la IP)
+
+_____________________
+28/08/23
+
+## CONECTARSE ENTRE MAQUINAS
+
