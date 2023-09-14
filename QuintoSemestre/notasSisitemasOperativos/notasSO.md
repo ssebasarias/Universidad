@@ -32,6 +32,7 @@ __________________
   * apt-get update (actualiza el sistema)
   * apt-get upgrade (descarga los archivos que debe descargar de la actualizacion)
   * apt_get install net-tools (para instalar paquetes o herramientas de para ver el estado de la red)
+  * apt-cache search (Busca a traves de palabras clave paquetes que esten en el repositorio) Ej: apt-cache search Apache2
 * whoami: Para saber en que usuario estoy (el usuario **1000** es el usuario que cree, el root es el usuario **1**)
 * poweroff: para apagar verdaderamente la maquina
 * clear: para limpiar la pantalla o eliminar los comandos que hice anteriormente
@@ -102,3 +103,16 @@ Esta esta contruida por una base de SO linux llamada Darwin, un conjunti de estr
 * Caracteristicas de las redes inalambricas y el protocolo 802.11 abcg
 * Caracteristicas del cable micro USB, C y HDMI
 * 
+
+_____________________
+13/09/23
+
+## Puertos
+
+* Samba   445 
+* SSH     22
+* FTP     21
+* Telnet  23
+* Apache  80 / Nginx  80 
+
+## Consulta "Que es y como se instala Nginx"

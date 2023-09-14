@@ -42,7 +42,7 @@ En resumen, el factor ambiental de la gestión sostenible de los recursos humano
 
 ___________________________________
 
-### Facor social
+### Factor social
 
 El factor social en la gestión de personas implica que las empresas deben considerar el impacto de sus operaciones en la comunidad y tomar medidas para promover el bienestar social. Esto significa que las empresas deben ser socialmente responsables en la gestión de su personal, y considerar los derechos humanos y fundamentales de los diferentes grupos de interés relacionados con la empresa. Además, las empresas deben implementar programas que promuevan la conservación de la riqueza cultural y las tradiciones, y deben tener en cuenta factores económicos, políticos, regulatorios y de género. En resumen, la gestión de personas debe ser responsable socialmente y considerar el impacto de las operaciones de la empresa en la comunidad.
 
