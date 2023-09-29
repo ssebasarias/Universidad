@@ -41,6 +41,7 @@ __________________
 * ctrl + alt + f1 o fn (para intercambiar entre terminales)
 * chmod (para otorgar permisos a un archivo) ejemplo: chmod 740 archivo.txt
 * chown ()
+* wget (Para clonar una pagina y obtener la informacion de ella, esto puede servir para descargar un archivo)
 
 ## COMANDOS WINDOWS
 * ping (para saber si estoy conectado a un dispositivo o una red) __ejemplo: ping 10.0.2.15__
@@ -115,4 +116,19 @@ _____________________
 * Telnet  23
 * Apache  80 / Nginx  80 
 
+# Tarea
+Crear una pagina y subirla al  servidor apache usando linux como servidor y logrando verla desde cualquier dispositivo en la misma red
+Ruta de apache: /var/www/html
+
 ## Consulta "Que es y como se instala Nginx"
+
+__________________
+20/09/23
+
+# Descargar e instalar apache compilado
+
+1. Dentro de la carpeta 'httpd-2.4' se descarga todos los archivos descomprimidos 
+2. ./configure --prefix=Nombre_carpeta
+3. make
+4. make install
+5.  
