@@ -123,12 +123,18 @@ Ruta de apache: /var/www/html
 ## Consulta "Que es y como se instala Nginx"
 
 __________________
-20/09/23
+02/10/23
 
-# Descargar e instalar apache compilado
+## Balanceador de carga
 
-1. Dentro de la carpeta 'httpd-2.4' se descarga todos los archivos descomprimidos 
-2. ./configure --prefix=Nombre_carpeta
-3. make
-4. make install
-5.  
+Es la forma o configuracion del servidor, en este caso apache, con la cual se configuran los parametros como la ip, el puerto, nombre y allias del servidor para que al momento en el que un usuario desee entrar tenga parametros especificos de entrada para tener la mejor experiencia tanto para el usuario como para la salud del servidor.
+
+<VirtualHost *:80>
+  ServerName (se pone la ruta a encontrar de la pagina)
+  ServerAlias (un nombre resumido para encontrar mas facil la pagina. Ej: instagram
+  Document (ruta donde se encuentra la carpeta que contiene la pagina dentro del servidor
+</VirtualHost>
+
+Este fragmento de condigo es un ejemplo de como se podria configurar un segmento del servidor para poder configurarlo para que pueda ser distribuido segun las caracteristicas del servidor y el dispositivo que se esta conectando. Por ejemplo, si se esta conectando desde el puerto 80 muestre una pagina, si se com¿necta desde el 8080 muestre otra, si la IP es de otro pais muestre otro, y asi sucesivamente (Este se hace en la parte del <VirtualHost *:80>)
+
+POXY:   
