@@ -7,7 +7,6 @@ DECLARE
   dia_semana NUMBER(1);
 
 BEGIN
-  -- Ingreso de la fecha de nacimiento
   DBMS_OUTPUT.PUT_LINE('Ingrese el día de su nacimiento: ');
   dia := TO_NUMBER(DBMS_INPUT.GET_LINE);
 

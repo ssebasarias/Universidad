@@ -6,29 +6,22 @@
 -- d. Hacemos el cálculo y visualizamos el resultado
 
 DECLARE
-  -- Constante para el porcentaje de impuesto
   const IVA NUMBER := 21;
-
-  -- Variable para el precio del producto
   precio_producto NUMBER(5,2);
-
-  -- Variable para el resultado del impuesto
   impuesto NUMBER(5,2);
 
 BEGIN
-  -- Ingreso del precio del producto
   BEGIN
     DBMS_OUTPUT.PUT_LINE('Ingrese el precio del producto: ');
     precio_producto := TO_NUMBER(DBMS_INPUT.GET_LINE);
+
   EXCEPTION
     WHEN INVALID_NUMBER THEN
       RAISE_APPLICATION_ERROR(-20001, 'Valor no numérico ingresado.');
   END;
 
-  -- Cálculo del impuesto
-  impuesto := precio_producto * IVA / 100;
+  impuesto := precio_producto * (IVA / 100);
 
-  -- Visualización del resultado
   DBMS_OUTPUT.PUT_LINE('El impuesto del producto es: ' || impuesto);
 
 EXCEPTION
