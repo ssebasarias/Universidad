@@ -13,13 +13,10 @@ DECLARE
   tipo_producto CHAR(1);
 
 BEGIN
-  -- Ingreso del código del producto
   DBMS_OUTPUT.PUT_LINE('Ingrese el código del producto (A-E): ');
   tipo_producto := DBMS_INPUT.GET_LINE;
 
-  -- Validación del código
   IF tipo_producto IN ('A', 'B', 'C', 'D', 'E') THEN
-    -- Visualización del tipo de producto
     CASE tipo_producto
       WHEN 'A' THEN DBMS_OUTPUT.PUT_LINE('El producto es de tipo: Electronica');
       WHEN 'B' THEN DBMS_OUTPUT.PUT_LINE('El producto es de tipo: Informática');

@@ -10,14 +10,11 @@ DECLARE
   caracter VARCHAR2(1);
   texto_invertido VARCHAR2(100);
 BEGIN
-  -- Ingreso de la frase
   DBMS_OUTPUT.PUT_LINE('Ingrese una frase: ');
   texto := DBMS_INPUT.GET_LINE;
 
-  -- Obtención de la longitud de la frase
   longitud := LENGTH(texto);
 
-  -- Inicialización de la variable para el texto invertido
   texto_invertido := '';
 
   -- Bucle para recorrer la frase en orden inverso
@@ -33,7 +30,6 @@ BEGIN
     posicion := posicion - 1;
   END LOOP;
 
-  -- Visualización del texto invertido
   DBMS_OUTPUT.PUT_LINE('La frase al revés es: ' || texto_invertido);
 EXCEPTION
   WHEN OTHERS THEN

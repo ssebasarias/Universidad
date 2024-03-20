@@ -10,7 +10,6 @@ DECLARE
   caracter VARCHAR2(1);
   texto_invertido VARCHAR2(100);
 BEGIN
-  -- Ingreso de la frase
   DBMS_OUTPUT.PUT_LINE('Ingrese una frase: ');
   texto := DBMS_INPUT.GET_LINE;
 
