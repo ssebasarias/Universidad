@@ -32,3 +32,37 @@ Variables latentes: son un conjunto de variables observables, cada una tiene sus
 _________________________________________________________________
 r poder predifcrivo dentro de la muestra 
 q fuera de la meustra
+
+_______________________________________________________________________________
+CLUSTERIZACION
+Agrupaciones que tienen caracteristicas similares a la categorizacion pero que estas no estas ya estructuradas, es decir, la categorizacion ya existe, categoria hombre y categoreia mujer, en cambio los datos cluster no.
+Agrupacion de datos con caracteristicas similares
+
+## Pregunta de investigacion
+
+cual es el tipo de empresa que prevalece en el sector manufactutra colombiana?
+
+## Apuntes de la base de datos cluster
+
+Dos tipos de empresa => 
+
+1. inovvacion - prospectora 
+El analisis de las empresas de inovacion se enfocan en lo externo a la empresa, es decir, item como el crecimiento de la empresa, productos innovadores, competencia del mercado, publicidad, etc etc
+
+2. eficiencia operacional - defensora
+El analisis de estas empresas se enfocan en lo interno de la empresa, analisar sus procesos de procesos como la eficiencia y claidad de la empresa
+
+## paso a paso aplicacion SPSS
+
+1. Cargar datos tipo excel
+2. cambiar datos a escala
+3. Agregar etiquetas
+4. agregar escala liker al apartado de valores a las variables etiquetadas
+5. Analizar datos con metodo cluster
+	5.1. Cluster jerarquico (en el caso de esta base de datos solo son 2 cluster, inovacion y eficiencia operacional)
+	5.2. Usando las variables de etiqueta y la variable cluster generada se genera la moda para comprobar que cluster es 1 y cual es 2
+	5.3. Teniendo en cuenta el dato anterior ir a frecuencia para determinar los porcentajes de la influencia de los datos  (en este caso, las Empresas Tradicionales son el 76% de la manufacutura colombiana y el porcenje restante es de empresas innovadoras)
+
+## Vocabulario
+
+**Discretizacion** : convertir un grupo de variables en una vaiable unica
