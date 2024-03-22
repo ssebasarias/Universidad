@@ -6,25 +6,19 @@
 -- d. por ejemplo, Pedro → ***** 5. 
 
 DECLARE
-  nombre VARCHAR2(50);
+  nombre VARCHAR2(50) := 'Sebastian';
   longitud NUMBER;
+  caracteres VARCHAR2(50);
 BEGIN
-  -- Ingreso del nombre
-  DBMS_OUTPUT.PUT_LINE('Ingrese su nombre: ');
-  nombre := DBMS_INPUT.GET_LINE;
-
-  -- Obtención de la longitud del nombre
   longitud := LENGTH(nombre);
 
-  -- Impresión de asteriscos
   DBMS_OUTPUT.PUT_LINE('Nombre: ' || nombre);
-  DBMS_OUTPUT.PUT_LINE('Longitud: ' || longitud);
+  DBMS_OUTPUT.PUT_LINE('Numero de caracteres: ' || longitud);
   FOR i IN 1..longitud LOOP
-    DBMS_OUTPUT.PUT('*');
+  caracteres := caracteres || '*'
   END LOOP;
-
+  DBMS_OUTPUT.PUT_LINE(caracteres);
 END;
-/
 
 -- e. Práctica 5 – bucles
 -- i. Creamos dos variables numéricas, "inicio y fin" 
@@ -32,18 +26,10 @@ END;
 -- iii. Debemos sacar los números que sean múltiplos de 4 de ese rango
 
 DECLARE
-  inicio NUMBER;
-  fin NUMBER;
+  inicio NUMBER := 1;
+  fin NUMBER := 15;
   numero NUMBER;
 BEGIN
-  -- Ingreso del rango
-  DBMS_OUTPUT.PUT_LINE('Ingrese el valor inicial: ');
-  inicio := TO_NUMBER(DBMS_INPUT.GET_LINE);
-
-  DBMS_OUTPUT.PUT_LINE('Ingrese el valor final: ');
-  fin := TO_NUMBER(DBMS_INPUT.GET_LINE);
-
-  -- Impresión de los múltiplos de 4
   DBMS_OUTPUT.PUT_LINE('Múltiplos de 4 entre ' || inicio || ' y ' || fin);
   FOR numero IN inicio..fin LOOP
     IF MOD(numero, 4) = 0 THEN
@@ -52,4 +38,3 @@ BEGIN
   END LOOP;
 
 END;
-/
