@@ -28,3 +28,14 @@ Origen: Conversación con Bing, 18/3/2024
 (1) Cómo interpretar la matriz de confusión: ejemplo práctico. https://telefonicatech.com/blog/como-interpretar-la-matriz-de-confusion-ejemplo-practico.
 (2) Matriz de confusión — Aprendizaje automático — DATA SCIENCE. https://datascience.eu/es/aprendizaje-automatico/matriz-de-confusion/.
 (3) ¿Qué es una matriz de confusión? - Unite.AI. https://www.unite.ai/es/que-es-una-matriz-de-confusion/.
+
+______________________________________
+# FINAL
+
+Realizar una aplicacion real de todo lo visto (futbol, salud, marketing, etc)
+
+* Limpieza: se normalizan y vuelven numericos los datos 
+* Preparacion de datos: 
+   * Buscar outliers o datos atipicos para determinar cuales son las variable que pueden llegar a generar ruido, esto se puede hacer observando el histograma y validar si tiene o no un sesgo
+   * Eliminar los datos atipicos de cada columna de datos que se vea afectada
+* Regresion logistica o multiple
