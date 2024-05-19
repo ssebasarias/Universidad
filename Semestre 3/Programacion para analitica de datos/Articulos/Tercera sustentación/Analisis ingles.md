@@ -1,0 +1,6 @@
+
+The article "The impact of consumer perceived value on repeat purchase intention based on online reviews: by the method of text mining" examines how perceived value affects customers' intention to make repeat purchases online. Using text mining techniques, the authors analyzed over 6,200 online customer reviews of a Chinese electronics retail store. The results suggest that perceived value has a significant impact on customers' intention to make repeat purchases online, while customer satisfaction does not have a direct impact on perceived value.
+
+The authors found that factors influencing perceived value include product quality, price, convenience, and customer service. Therefore, online retailers can improve perceived value by paying attention to these factors and, in turn, increase customers' intention to make repeat purchases.
+
+Overall, the study provides valuable insights into how perceived value influences intention to make repeat purchases online and highlights the importance of improving the customer experience to increase customer loyalty. The results can be useful for online retailers and other businesses looking to improve customer satisfaction and increase online sales.

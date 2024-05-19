@@ -1,0 +1,81 @@
+Nombre de la Imagen,URL,Concepto,Valor
+Imagen 1,https://samples.clarifai.com/metro-north.jpg,train,0.9996053576469421
+Imagen 1,https://samples.clarifai.com/metro-north.jpg,railway,0.9992986917495728
+Imagen 1,https://samples.clarifai.com/metro-north.jpg,subway system,0.9982514977455139
+Imagen 1,https://samples.clarifai.com/metro-north.jpg,station,0.9980105757713318
+Imagen 1,https://samples.clarifai.com/metro-north.jpg,locomotive,0.9972571730613708
+Imagen 1,https://samples.clarifai.com/metro-north.jpg,transportation system,0.9969801306724548
+Imagen 1,https://samples.clarifai.com/metro-north.jpg,travel,0.988979697227478
+Imagen 1,https://samples.clarifai.com/metro-north.jpg,commuter,0.9808752536773682
+Imagen 1,https://samples.clarifai.com/metro-north.jpg,platform,0.9806439876556396
+Imagen 1,https://samples.clarifai.com/metro-north.jpg,light,0.9742040634155273
+Imagen 1,https://samples.clarifai.com/metro-north.jpg,train station,0.9687404036521912
+Imagen 1,https://samples.clarifai.com/metro-north.jpg,blur,0.9672204256057739
+Imagen 1,https://samples.clarifai.com/metro-north.jpg,city,0.9614798426628113
+Imagen 1,https://samples.clarifai.com/metro-north.jpg,road,0.9613829255104065
+Imagen 1,https://samples.clarifai.com/metro-north.jpg,urban,0.9603424072265625
+Imagen 1,https://samples.clarifai.com/metro-north.jpg,traffic,0.959934651851654
+Imagen 1,https://samples.clarifai.com/metro-north.jpg,street,0.9474142789840698
+Imagen 1,https://samples.clarifai.com/metro-north.jpg,public,0.9343124032020569
+Imagen 1,https://samples.clarifai.com/metro-north.jpg,tramway,0.9318978190422058
+Imagen 1,https://samples.clarifai.com/metro-north.jpg,business,0.9294139742851257
+Imagen 2,https://samples.clarifai.com/dog2.jpeg,dog,0.9981174468994141
+Imagen 2,https://samples.clarifai.com/dog2.jpeg,animal,0.9885246157646179
+Imagen 2,https://samples.clarifai.com/dog2.jpeg,pet,0.984154462814331
+Imagen 2,https://samples.clarifai.com/dog2.jpeg,cute,0.9807240962982178
+Imagen 2,https://samples.clarifai.com/dog2.jpeg,portrait,0.9787907600402832
+Imagen 2,https://samples.clarifai.com/dog2.jpeg,mammal,0.9730609655380249
+Imagen 2,https://samples.clarifai.com/dog2.jpeg,fur,0.9716914296150208
+Imagen 2,https://samples.clarifai.com/dog2.jpeg,canine,0.9650460481643677
+Imagen 2,https://samples.clarifai.com/dog2.jpeg,puppy,0.9600763916969299
+Imagen 2,https://samples.clarifai.com/dog2.jpeg,funny,0.9451290369033813
+Imagen 2,https://samples.clarifai.com/dog2.jpeg,eye,0.9267837405204773
+Imagen 2,https://samples.clarifai.com/dog2.jpeg,one,0.9198338389396667
+Imagen 2,https://samples.clarifai.com/dog2.jpeg,no person,0.9089269638061523
+Imagen 2,https://samples.clarifai.com/dog2.jpeg,friendship,0.8976508378982544
+Imagen 2,https://samples.clarifai.com/dog2.jpeg,sit,0.8882738947868347
+Imagen 2,https://samples.clarifai.com/dog2.jpeg,obedience,0.8839777112007141
+Imagen 2,https://samples.clarifai.com/dog2.jpeg,looking,0.877529501914978
+Imagen 2,https://samples.clarifai.com/dog2.jpeg,little,0.8601776361465454
+Imagen 2,https://samples.clarifai.com/dog2.jpeg,guard,0.8429450988769531
+Imagen 2,https://samples.clarifai.com/dog2.jpeg,hair,0.8406715989112854
+Imagen 3,https://samples.clarifai.com/wedding.jpg,wedding,0.9952794313430786
+Imagen 3,https://samples.clarifai.com/wedding.jpg,ceremony,0.9913254380226135
+Imagen 3,https://samples.clarifai.com/wedding.jpg,people,0.9898955821990967
+Imagen 3,https://samples.clarifai.com/wedding.jpg,groom,0.9788287281990051
+Imagen 3,https://samples.clarifai.com/wedding.jpg,bride,0.9739564657211304
+Imagen 3,https://samples.clarifai.com/wedding.jpg,funeral,0.9725708961486816
+Imagen 3,https://samples.clarifai.com/wedding.jpg,man,0.9586430788040161
+Imagen 3,https://samples.clarifai.com/wedding.jpg,celebration,0.9572497010231018
+Imagen 3,https://samples.clarifai.com/wedding.jpg,group,0.9541624784469604
+Imagen 3,https://samples.clarifai.com/wedding.jpg,woman,0.951915979385376
+Imagen 3,https://samples.clarifai.com/wedding.jpg,leader,0.9508560299873352
+Imagen 3,https://samples.clarifai.com/wedding.jpg,religion,0.9413197636604309
+Imagen 3,https://samples.clarifai.com/wedding.jpg,street,0.9377951622009277
+Imagen 3,https://samples.clarifai.com/wedding.jpg,wear,0.9347177743911743
+Imagen 3,https://samples.clarifai.com/wedding.jpg,adult,0.9303958415985107
+Imagen 3,https://samples.clarifai.com/wedding.jpg,many,0.9285837411880493
+Imagen 3,https://samples.clarifai.com/wedding.jpg,city,0.9118908643722534
+Imagen 3,https://samples.clarifai.com/wedding.jpg,military,0.9062687158584595
+Imagen 3,https://samples.clarifai.com/wedding.jpg,parade,0.8879266381263733
+Imagen 3,https://samples.clarifai.com/wedding.jpg,chair,0.8841441869735718
+Imagen 4,https://th.bing.com/th?id=OIP._1RFp6C4vdZ_dY8k5V-fAAHaEK&w=333&h=187&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2https://imagen.research.google/main_gallery_images/a-brain-riding-a-rocketship.jpghttps://th.bing.com/th?id=OIP.b46MsMmCZN3oFUzs_dMmwQHaFj&w=288&h=216&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2https://th.bing.com/th?id=OIP.QLavrcMgYslbVsJR6y2E5QHaEh&w=319&h=195&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2,bridge,0.9981001019477844
+Imagen 4,https://th.bing.com/th?id=OIP._1RFp6C4vdZ_dY8k5V-fAAHaEK&w=333&h=187&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2https://imagen.research.google/main_gallery_images/a-brain-riding-a-rocketship.jpghttps://th.bing.com/th?id=OIP.b46MsMmCZN3oFUzs_dMmwQHaFj&w=288&h=216&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2https://th.bing.com/th?id=OIP.QLavrcMgYslbVsJR6y2E5QHaEh&w=319&h=195&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2,travel,0.9907239079475403
+Imagen 4,https://th.bing.com/th?id=OIP._1RFp6C4vdZ_dY8k5V-fAAHaEK&w=333&h=187&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2https://imagen.research.google/main_gallery_images/a-brain-riding-a-rocketship.jpghttps://th.bing.com/th?id=OIP.b46MsMmCZN3oFUzs_dMmwQHaFj&w=288&h=216&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2https://th.bing.com/th?id=OIP.QLavrcMgYslbVsJR6y2E5QHaEh&w=319&h=195&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2,dusk,0.9897418022155762
+Imagen 4,https://th.bing.com/th?id=OIP._1RFp6C4vdZ_dY8k5V-fAAHaEK&w=333&h=187&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2https://imagen.research.google/main_gallery_images/a-brain-riding-a-rocketship.jpghttps://th.bing.com/th?id=OIP.b46MsMmCZN3oFUzs_dMmwQHaFj&w=288&h=216&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2https://th.bing.com/th?id=OIP.QLavrcMgYslbVsJR6y2E5QHaEh&w=319&h=195&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2,water,0.9894843697547913
+Imagen 4,https://th.bing.com/th?id=OIP._1RFp6C4vdZ_dY8k5V-fAAHaEK&w=333&h=187&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2https://imagen.research.google/main_gallery_images/a-brain-riding-a-rocketship.jpghttps://th.bing.com/th?id=OIP.b46MsMmCZN3oFUzs_dMmwQHaFj&w=288&h=216&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2https://th.bing.com/th?id=OIP.QLavrcMgYslbVsJR6y2E5QHaEh&w=319&h=195&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2,architecture,0.9856535792350769
+Imagen 4,https://th.bing.com/th?id=OIP._1RFp6C4vdZ_dY8k5V-fAAHaEK&w=333&h=187&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2https://imagen.research.google/main_gallery_images/a-brain-riding-a-rocketship.jpghttps://th.bing.com/th?id=OIP.b46MsMmCZN3oFUzs_dMmwQHaFj&w=288&h=216&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2https://th.bing.com/th?id=OIP.QLavrcMgYslbVsJR6y2E5QHaEh&w=319&h=195&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2,evening,0.9845484495162964
+Imagen 4,https://th.bing.com/th?id=OIP._1RFp6C4vdZ_dY8k5V-fAAHaEK&w=333&h=187&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2https://imagen.research.google/main_gallery_images/a-brain-riding-a-rocketship.jpghttps://th.bing.com/th?id=OIP.b46MsMmCZN3oFUzs_dMmwQHaFj&w=288&h=216&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2https://th.bing.com/th?id=OIP.QLavrcMgYslbVsJR6y2E5QHaEh&w=319&h=195&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2,reflection,0.9809077382087708
+Imagen 4,https://th.bing.com/th?id=OIP._1RFp6C4vdZ_dY8k5V-fAAHaEK&w=333&h=187&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2https://imagen.research.google/main_gallery_images/a-brain-riding-a-rocketship.jpghttps://th.bing.com/th?id=OIP.b46MsMmCZN3oFUzs_dMmwQHaFj&w=288&h=216&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2https://th.bing.com/th?id=OIP.QLavrcMgYslbVsJR6y2E5QHaEh&w=319&h=195&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2,illuminated,0.9803082942962646
+Imagen 4,https://th.bing.com/th?id=OIP._1RFp6C4vdZ_dY8k5V-fAAHaEK&w=333&h=187&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2https://imagen.research.google/main_gallery_images/a-brain-riding-a-rocketship.jpghttps://th.bing.com/th?id=OIP.b46MsMmCZN3oFUzs_dMmwQHaFj&w=288&h=216&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2https://th.bing.com/th?id=OIP.QLavrcMgYslbVsJR6y2E5QHaEh&w=319&h=195&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2,city,0.9797770380973816
+Imagen 4,https://th.bing.com/th?id=OIP._1RFp6C4vdZ_dY8k5V-fAAHaEK&w=333&h=187&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2https://imagen.research.google/main_gallery_images/a-brain-riding-a-rocketship.jpghttps://th.bing.com/th?id=OIP.b46MsMmCZN3oFUzs_dMmwQHaFj&w=288&h=216&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2https://th.bing.com/th?id=OIP.QLavrcMgYslbVsJR6y2E5QHaEh&w=319&h=195&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2,transportation system,0.9787160158157349
+Imagen 4,https://th.bing.com/th?id=OIP._1RFp6C4vdZ_dY8k5V-fAAHaEK&w=333&h=187&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2https://imagen.research.google/main_gallery_images/a-brain-riding-a-rocketship.jpghttps://th.bing.com/th?id=OIP.b46MsMmCZN3oFUzs_dMmwQHaFj&w=288&h=216&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2https://th.bing.com/th?id=OIP.QLavrcMgYslbVsJR6y2E5QHaEh&w=319&h=195&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2,river,0.9777535200119019
+Imagen 4,https://th.bing.com/th?id=OIP._1RFp6C4vdZ_dY8k5V-fAAHaEK&w=333&h=187&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2https://imagen.research.google/main_gallery_images/a-brain-riding-a-rocketship.jpghttps://th.bing.com/th?id=OIP.b46MsMmCZN3oFUzs_dMmwQHaFj&w=288&h=216&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2https://th.bing.com/th?id=OIP.QLavrcMgYslbVsJR6y2E5QHaEh&w=319&h=195&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2,sky,0.9636293053627014
+Imagen 4,https://th.bing.com/th?id=OIP._1RFp6C4vdZ_dY8k5V-fAAHaEK&w=333&h=187&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2https://imagen.research.google/main_gallery_images/a-brain-riding-a-rocketship.jpghttps://th.bing.com/th?id=OIP.b46MsMmCZN3oFUzs_dMmwQHaFj&w=288&h=216&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2https://th.bing.com/th?id=OIP.QLavrcMgYslbVsJR6y2E5QHaEh&w=319&h=195&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2,horizontal plane,0.9485265016555786
+Imagen 4,https://th.bing.com/th?id=OIP._1RFp6C4vdZ_dY8k5V-fAAHaEK&w=333&h=187&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2https://imagen.research.google/main_gallery_images/a-brain-riding-a-rocketship.jpghttps://th.bing.com/th?id=OIP.b46MsMmCZN3oFUzs_dMmwQHaFj&w=288&h=216&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2https://th.bing.com/th?id=OIP.QLavrcMgYslbVsJR6y2E5QHaEh&w=319&h=195&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2,building,0.9484511017799377
+Imagen 4,https://th.bing.com/th?id=OIP._1RFp6C4vdZ_dY8k5V-fAAHaEK&w=333&h=187&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2https://imagen.research.google/main_gallery_images/a-brain-riding-a-rocketship.jpghttps://th.bing.com/th?id=OIP.b46MsMmCZN3oFUzs_dMmwQHaFj&w=288&h=216&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2https://th.bing.com/th?id=OIP.QLavrcMgYslbVsJR6y2E5QHaEh&w=319&h=195&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2,outdoors,0.9417818188667297
+Imagen 4,https://th.bing.com/th?id=OIP._1RFp6C4vdZ_dY8k5V-fAAHaEK&w=333&h=187&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2https://imagen.research.google/main_gallery_images/a-brain-riding-a-rocketship.jpghttps://th.bing.com/th?id=OIP.b46MsMmCZN3oFUzs_dMmwQHaFj&w=288&h=216&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2https://th.bing.com/th?id=OIP.QLavrcMgYslbVsJR6y2E5QHaEh&w=319&h=195&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2,no person,0.9407989978790283
+Imagen 4,https://th.bing.com/th?id=OIP._1RFp6C4vdZ_dY8k5V-fAAHaEK&w=333&h=187&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2https://imagen.research.google/main_gallery_images/a-brain-riding-a-rocketship.jpghttps://th.bing.com/th?id=OIP.b46MsMmCZN3oFUzs_dMmwQHaFj&w=288&h=216&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2https://th.bing.com/th?id=OIP.QLavrcMgYslbVsJR6y2E5QHaEh&w=319&h=195&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2,connection,0.9395739436149597
+Imagen 4,https://th.bing.com/th?id=OIP._1RFp6C4vdZ_dY8k5V-fAAHaEK&w=333&h=187&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2https://imagen.research.google/main_gallery_images/a-brain-riding-a-rocketship.jpghttps://th.bing.com/th?id=OIP.b46MsMmCZN3oFUzs_dMmwQHaFj&w=288&h=216&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2https://th.bing.com/th?id=OIP.QLavrcMgYslbVsJR6y2E5QHaEh&w=319&h=195&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2,light,0.928124189376831
+Imagen 4,https://th.bing.com/th?id=OIP._1RFp6C4vdZ_dY8k5V-fAAHaEK&w=333&h=187&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2https://imagen.research.google/main_gallery_images/a-brain-riding-a-rocketship.jpghttps://th.bing.com/th?id=OIP.b46MsMmCZN3oFUzs_dMmwQHaFj&w=288&h=216&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2https://th.bing.com/th?id=OIP.QLavrcMgYslbVsJR6y2E5QHaEh&w=319&h=195&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2,sunset,0.9179773330688477
+Imagen 4,https://th.bing.com/th?id=OIP._1RFp6C4vdZ_dY8k5V-fAAHaEK&w=333&h=187&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2https://imagen.research.google/main_gallery_images/a-brain-riding-a-rocketship.jpghttps://th.bing.com/th?id=OIP.b46MsMmCZN3oFUzs_dMmwQHaFj&w=288&h=216&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2https://th.bing.com/th?id=OIP.QLavrcMgYslbVsJR6y2E5QHaEh&w=319&h=195&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2,panoramic,0.9168253540992737

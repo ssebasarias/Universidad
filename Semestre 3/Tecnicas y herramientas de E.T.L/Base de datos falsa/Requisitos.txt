@@ -1,0 +1,13 @@
+------------------------------------------ 09/02/2023
+        TALLER 1
+1- Crear base de datos falsa que contenga como minimo 100 millones de registros, con la siguiente estructura:
+
+| Email    (str)      | Fecha  (date)    | Puntaje  (int) | Sector  (str) | País  (str)  |
+| saint@bing.com      | 2000-10-08       | 10             | Salud         | Japón        |
+
+2- Crear una cantidad de emails que se peudan llegar a repetir para posteriormente agruparlos por puntaje y pais.
+3- Cada email repetido debe tener el mismo pais asociado. 
+4- La fecha ddebe estar en un formato tipo date "yyyy-MM-dd".
+5- Puntaje debe ir de 0 - 100 y debe ser un entero.
+6- El sector deberá ser elegido de algunos sectores tipicos. Ej: ["salud", "minero", "educación", "financero"].
+7- Seran 7 sectores como minimo.
