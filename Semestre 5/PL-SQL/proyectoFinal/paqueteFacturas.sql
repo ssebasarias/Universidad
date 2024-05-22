@@ -26,11 +26,14 @@ CREATE OR REPLACE PACKAGE FACTURAS_PKG AS
     -- FUNCIONES 
     FUNCTION NUM_FACTURAS (p_fecha_inicio IN DATE, p_fecha_fin IN DATE) RETURN NUMBER;
     FUNCTION TOTAL_FACTURA (p_cod_factura IN NUMBER) RETURN NUMBER;
-END FACTURAS;
+END FACTURAS_PKG;
 /
 
 CREATE OR REPLACE PACKAGE BODY FACTURAS_PKG AS
     -- PROCEDIMIENTOS 
+    -- i. CREAR_FACTURA (COD_FACTURA, FECHA,DESCRIPCIÓN). 
+    --     1. Crear una factura con los valores indicados en los parámetros 
+    --     2. Debe comprobar que no se duplica
     PROCEDURE CREAR_FACTURA (p_cod_factura IN NUMBER, p_fecha IN DATE, p_descripcion IN VARCHAR2) IS
         v_count NUMBER;
     BEGIN
@@ -61,6 +64,10 @@ CREATE OR REPLACE PACKAGE BODY FACTURAS_PKG AS
             DBMS_OUTPUT.PUT_LINE('Error al crear la factura: ' || SQLERRM);
     END CREAR_FACTURA;
 
+
+    -- ii. ELIMINAR_FACTURA (cod_factura). 
+    --     1. Debe borrar la factura indicada en el parámetro
+    --     2. Debe borrar también las líneas de facturas asociadas en la tabla LINEAS_FACTURA.
     PROCEDURE ELIMINAR_FACTURA (p_cod_factura IN NUMBER) IS
     BEGIN
         -- Borrar las líneas de factura asociadas
@@ -102,6 +109,9 @@ CREATE OR REPLACE PACKAGE BODY FACTURAS_PKG AS
             DBMS_OUTPUT.PUT_LINE('Error al modificar la descripción de la factura: ' || SQLERRM);
     END MOD_DESCRI;
 
+
+    -- iv. MOD_FECHA (COD_FACTURA,FECHA).
+    --     1. Debe modificar la descripción de la factura que tenga el código del parámetro con la nueva fecha
     PROCEDURE MOD_FECHA (p_cod_factura IN NUMBER, p_nueva_fecha IN DATE) IS
     BEGIN
         -- Actualizar la fecha de la factura
@@ -122,6 +132,8 @@ CREATE OR REPLACE PACKAGE BODY FACTURAS_PKG AS
     END MOD_FECHA;
 
     -- FUNCIONES 
+    --     i. NUM_FACTURAS(FECHA_INICIO,FECHA_FIN). 
+--          1. Devuelve el número de facturas que hay entre esas fechas
     FUNCTION NUM_FACTURAS (p_fecha_inicio IN DATE, p_fecha_fin IN DATE) RETURN NUMBER IS
         v_num_facturas NUMBER;
     BEGIN
@@ -139,6 +151,10 @@ CREATE OR REPLACE PACKAGE BODY FACTURAS_PKG AS
             RETURN -1; -- Valor de retorno indicando error
     END NUM_FACTURAS;
 
+
+    --  ii. TOTAL_FACTURA(COD_FACTURA.) 
+    --     1. Devuelve el total de la factura con ese código. Debe hacer el sumatorio de “pvp*unidades” 
+    --     de las líneas de esa factura en la tabla LINEAS_FACTURA
     FUNCTION TOTAL_FACTURA (p_cod_factura IN NUMBER) RETURN NUMBER IS
         v_total NUMBER := 0;
     BEGIN
@@ -152,39 +168,63 @@ CREATE OR REPLACE PACKAGE BODY FACTURAS_PKG AS
         RETURN v_total;
     EXCEPTION
         WHEN NO_DATA_FOUND THEN
-            -- Manejar el caso de que no se encuentren líneas de factura para el código especificado
-            DBMS_OUTPUT.PUT_LINE('No hay líneas de factura para el código especificado.');
-            RETURN 0; -- Valor de retorno indicando que el total es cero
+            -- Manejar el caso donde no se encuentran líneas para el código de factura dado
+            DBMS_OUTPUT.PUT_LINE('No se encontraron líneas de factura para el código especificado.');
+            RETURN NULL; -- Indicar que no se encontraron datos
+
         WHEN OTHERS THEN
             -- Manejar cualquier otro error
             DBMS_OUTPUT.PUT_LINE('Error al calcular el total de la factura: ' || SQLERRM);
             RETURN -1; -- Valor de retorno indicando error
     END TOTAL_FACTURA;
-END FACTURAS;
+END FACTURAS_PKG;
 /
 
 
--- EJECUCION
 
+
+-- Ejecutar los procedimientos del paquete FACTURAS_PKG --
+
+-- Crear una nueva factura
 BEGIN
-    FACTURAS.CREAR_FACTURA(1, TO_DATE('2024-05-11', 'YYYY-MM-DD'), 'Descripción de la factura');
+    FACTURAS_PKG.CREAR_FACTURA(6, TO_DATE('2024-05-10', 'YYYY-MM-DD'), 'Compra de muebles');
 END;
 /
 
-
+-- Modificar la descripción de una factura existente
 BEGIN
-    FACTURAS.ELIMINAR_FACTURA(1);
+    FACTURAS_PKG.MOD_DESCRI(6, 'Compra de muebles para la oficina');
 END;
 /
 
-
+-- Modificar la fecha de una factura existente
 BEGIN
-    FACTURAS.MOD_DESCRI(1, 'Nueva descripción de la factura');
+    FACTURAS_PKG.MOD_FECHA(6, TO_DATE('2024-05-15', 'YYYY-MM-DD'));
 END;
 /
 
-
+-- Eliminar una factura
 BEGIN
-    FACTURAS.MOD_FECHA(1, TO_DATE('2024-05-11', 'YYYY-MM-DD'));
+    FACTURAS_PKG.ELIMINAR_FACTURA(6);
+END;
+/
+
+-- Calcular el número de facturas entre dos fechas
+DECLARE
+    num_facturas NUMBER;
+BEGIN
+    num_facturas := FACTURAS_PKG.NUM_FACTURAS(TO_DATE('2024-04-01', 'YYYY-MM-DD'), TO_DATE('2024-05-31', 'YYYY-MM-DD'));
+    DBMS_OUTPUT.PUT_LINE('Número de facturas entre las fechas especificadas: ' || num_facturas);
+END;
+/
+
+-- Calcular el total de una factura
+DECLARE
+    total_factura NUMBER;
+BEGIN
+    total_factura := FACTURAS_PKG.TOTAL_FACTURA(1); -- Suponiendo que quieres calcular el total de la factura con el código 1
+    IF total_factura IS NOT NULL THEN
+        DBMS_OUTPUT.PUT_LINE('Total de la factura: ' || total_factura);
+    END IF;
 END;
 /
