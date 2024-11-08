@@ -5,7 +5,7 @@ Usamos la herramienta John the ripper para encontrar la contraseña del arvhivo 
 comenzamos iniciando la herramienta en el archivo
 ![alt text](img/image-1.png)
 Con este hash usamos la herramienta para encontrar las contraseñas
-![alt text](image-2.png)
+![alt text](img/image-2.png)
 de esta manera podemos ver que encontro 4 contraseñas en el archivo hash que le pasamos, de las cuales obtuvo facilmente dos de ellas por su baja seguridad en cuanto a la eleccion de caracteres
 
 ## Conclusion
