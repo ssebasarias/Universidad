@@ -3,6 +3,10 @@
 ![alt text](<imgNotas/Imagen de WhatsApp 2024-08-23 a las 13.16.42_ce71eac4.jpg>)
 ![alt text](<imgNotas/Imagen de WhatsApp 2024-08-23 a las 13.17.02_ec21a126.jpg>)
 ![alt text](<imgNotas/Imagen de WhatsApp 2024-08-23 a las 13.17.48_27cadead.jpg>)
+![alt text](<imgNotas/Imagen de WhatsApp 2024-10-23 a las 09.38.27_38595fb8.jpg>)
+![alt text](<imgNotas/Imagen de WhatsApp 2024-10-23 a las 09.38.43_6bd4487c.jpg>)
+![alt text](<imgNotas/Imagen de WhatsApp 2024-10-23 a las 09.39.14_84ca555c.jpg>)
+![alt text](<imgNotas/Imagen de WhatsApp 2024-10-23 a las 09.39.29_8e650655.jpg>)
 
 ______________
 ## MAQUINA VIRTUAL
