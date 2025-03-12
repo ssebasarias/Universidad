@@ -2201,18 +2201,18 @@ id_propiedad,zona,piso,estrato,precio_millones,area_construida,parqueaderos,bani
 571,zona sur,4,5,320.0,102.0,2,3,3,casa,valle del lili,-76499.0,3445.0,34
 572,zona centro,3,3,520.0,583.0,1,5,9,casa,san bosco,-76499.0,3443.0,18
 573,zona norte,2,3,295.0,60.0,1,1,2,casa,portales de comfandi,-76499.0,3483.0,5
-574,zona norte,11,5,360.0,85.0,1,2,3,apto,urbanización la flora,-76499.0,3442.0,24
-575,zona norte,1,3,120.0,55.0,1,1,3,apto,torres de comfandi,-76499.0,3476.0,5
-576,zona norte,3,3,118.0,55.0,1,1,3,apto,torres de comfandi,-76499.0,3476.0,10
-577,zona norte,4,3,110.0,65.0,1,1,3,apto,salomia,-76499.0,3465.0,22
-578,zona norte,5,4,152.0,66.0,1,3,3,apto,pacará,-76499.0,3445.0,32
-579,zona norte,5,4,150.0,77.0,1,2,3,apto,pacara,-76499.0,3469.0,14
-580,zona norte,4,4,160.0,55.0,1,2,3,apto,metropolitano del norte,-76499.0,3479.0,10
-581,zona norte,3,3,90.0,53.0,1,1,2,apto,los guaduales,-76499.0,3425.0,33
-582,zona sur,4,4,550.0,197.0,2,4,3,apto,el ingenio,-76499.0,3471.0,29
-583,zona oriente,3,3,100.0,65.0,1,2,3,apto,calipso,-76499.0,3428.0,2
-584,zona norte,3,3,125.0,60.0,1,1,3,apto,brisas de los,-76499.0,3496.0,16
-585,zona norte,3,3,115.0,58.0,1,2,3,apto,brisas de los,-76499.0,3496.0,7
+574,zona norte,11,5,360.0,85.0,1,2,3,apartamento,urbanización la flora,-76499.0,3442.0,24
+575,zona norte,1,3,120.0,55.0,1,1,3,apartamento,torres de comfandi,-76499.0,3476.0,5
+576,zona norte,3,3,118.0,55.0,1,1,3,apartamento,torres de comfandi,-76499.0,3476.0,10
+577,zona norte,4,3,110.0,65.0,1,1,3,apartamento,salomia,-76499.0,3465.0,22
+578,zona norte,5,4,152.0,66.0,1,3,3,apartamento,pacará,-76499.0,3445.0,32
+579,zona norte,5,4,150.0,77.0,1,2,3,apartamento,pacara,-76499.0,3469.0,14
+580,zona norte,4,4,160.0,55.0,1,2,3,apartamento,metropolitano del norte,-76499.0,3479.0,10
+581,zona norte,3,3,90.0,53.0,1,1,2,apartamento,los guaduales,-76499.0,3425.0,33
+582,zona sur,4,4,550.0,197.0,2,4,3,apartamento,el ingenio,-76499.0,3471.0,29
+583,zona oriente,3,3,100.0,65.0,1,2,3,apartamento,calipso,-76499.0,3428.0,2
+584,zona norte,3,3,125.0,60.0,1,1,3,apartamento,brisas de los,-76499.0,3496.0,16
+585,zona norte,3,3,115.0,58.0,1,2,3,apartamento,brisas de los,-76499.0,3496.0,7
 518,zona norte,3,3,175.0,120.0,1,3,4,casa,villas de veracruz,-76498.0,3476.0,10
 519,zona norte,2,5,125.0,45.0,1,2,3,casa,villa de veracruz,-76498.0,3476.0,16
 520,zona norte,3,4,223.0,73.0,1,3,4,casa,villa del sol,-76498.0,3481.0,6
@@ -2784,7 +2784,7 @@ id_propiedad,zona,piso,estrato,precio_millones,area_construida,parqueaderos,bani
 587,zona oriente,2,3,160.0,120.0,1,2,4,casa,nueva floresta,-7649907.0,344.195,19
 588,zona norte,5,4,145.0,55.0,1,2,3,apartamento,torres de comfandi,-7649909.0,347.898,1
 589,zona norte,4,5,320.0,235.0,2,4,4,apartamento,acopi,-7649911.0,344.901,13
-590,zona norte,7,3,135.0,54.0,1,2,3,apto,barranquilla,-7649918.0,347.864,10
+590,zona norte,7,3,135.0,54.0,1,2,3,apartamento,barranquilla,-7649918.0,347.864,10
 591,zona oriente,1,3,350.0,72.0,1,4,10,casa,zona oriente,-7649918.0,342.603,30
 592,zona norte,3,3,350.0,265.0,1,5,7,casa,los guaduales,-764992.0,349.241,25
 593,zona norte,3,3,90.0,58.0,1,2,3,apartamento,torres de comfandi,-764992.0,347.617,24
