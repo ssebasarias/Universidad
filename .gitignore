@@ -2,3 +2,52 @@
 .Rhistory
 .RData
 .Ruserdata
+# 🛑 Ignorar entornos virtuales
+venv/
+.env
+
+# 🚀 Archivos de caché de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# 📂 Archivos de configuración de IDEs y editores de texto
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ⚙️ Archivos de configuración de logs y bases de datos temporales
+logs/
+*.log
+db.sqlite3
+*.sqlite3
+
+# 🔐 Archivos de credenciales o variables de entorno
+.env
+*.key
+*.pem
+
+# 📊 Datos temporales o de pruebas
+data/
+*.csv
+*.json
+*.xlsx
+*.parquet
+
+# 📦 Dependencias que se pueden regenerar
+node_modules/
+package-lock.json
+yarn.lock
+
+# 📄 Archivos generados automáticamente por Jupyter Notebooks
+.ipynb_checkpoints/
+
+# 📦 Archivos comprimidos o binarios
+*.zip
+*.tar.gz
+*.rar
+*.dll
+*.
+
