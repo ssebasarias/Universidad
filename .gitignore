@@ -29,13 +29,6 @@ db.sqlite3
 *.key
 *.pem
 
-# 📊 Datos temporales o de pruebas
-data/
-*.csv
-*.json
-*.xlsx
-*.parquet
-
 # 📦 Dependencias que se pueden regenerar
 node_modules/
 package-lock.json
