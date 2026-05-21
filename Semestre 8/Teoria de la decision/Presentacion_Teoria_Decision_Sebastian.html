@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teoría de Decisión Aplicada — Şahin et al. 2008</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f4ede1;
+    --bg-alt: #e8dcc4;
+    --ink: #1a1208;
+    --ink-soft: #4a3d2c;
+    --accent: #c8512b;
+    --accent-deep: #8b3617;
+    --gold: #d4a155;
+    --moss: #5c6b3f;
+    --paper: #faf5e9;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    height: 100%;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+  }
+  body {
+    background-image: 
+      radial-gradient(circle at 15% 10%, rgba(200, 81, 43, 0.06) 0%, transparent 40%),
+      radial-gradient(circle at 85% 90%, rgba(92, 107, 63, 0.05) 0%, transparent 40%);
+  }
+  .grain {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.4;
+    z-index: 100;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.07 0 0 0 0 0.03 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .deck {
+    width: 100vw; height: 100vh;
+    position: relative;
+  }
+  .slide {
+    position: absolute; inset: 0;
+    padding: 4vh 6vw;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.5s ease;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .slide.active {
+    opacity: 1; pointer-events: auto;
+  }
+  /* === Tipografía === */
+  h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 400; line-height: 1.05; }
+  .display { font-size: clamp(3.5rem, 7vw, 6.5rem); letter-spacing: -0.03em; font-weight: 500; }
+  .h-title { font-size: clamp(2.2rem, 4vw, 3.5rem); letter-spacing: -0.025em; font-weight: 500; }
+  .h-sub { font-size: clamp(1.4rem, 2vw, 1.8rem); font-weight: 400; font-style: italic; color: var(--ink-soft); }
+  .mono { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-soft); }
+  .body { font-size: clamp(0.95rem, 1.15vw, 1.1rem); line-height: 1.55; color: var(--ink-soft); }
+  .body-strong { color: var(--ink); }
+  
+  /* === Header común === */
+  .topbar {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 3vh;
+  }
+  .topbar .mono { font-weight: 500; }
+  .marker {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--paper);
+    padding: 0.2em 0.7em;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+  }
+  
+  /* === Slide 1: portada === */
+  .cover {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .cover .grid-bg {
+    position: absolute; inset: 0;
+    background-image: 
+      linear-gradient(rgba(212, 161, 85, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212, 161, 85, 0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .cover-content {
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column;
+    height: 100%; justify-content: space-between;
+  }
+  .cover-tag {
+    color: var(--gold);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+  }
+  .cover-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(3rem, 8vw, 7.5rem);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+  }
+  .cover-title em {
+    font-style: italic;
+    color: var(--gold);
+    font-weight: 400;
+  }
+  .cover-meta {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3vw;
+    padding-top: 3vh;
+    border-top: 1px solid rgba(212, 161, 85, 0.3);
+  }
+  .cover-meta-block .mono {
+    color: var(--gold);
+    margin-bottom: 0.4em;
+  }
+  .cover-meta-block .name {
+    font-family: 'Fraunces', serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--paper);
+  }
+  .cover-meta-block .sub {
+    font-size: 0.85rem;
+    color: rgba(250, 245, 233, 0.7);
+    margin-top: 0.2em;
+  }
+  .ornament {
+    position: absolute;
+    top: 8vh; right: 6vw;
+    font-family: 'Fraunces', serif;
+    font-size: 12rem;
+    color: var(--accent);
+    opacity: 0.15;
+    font-style: italic;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  /* === Slide layouts === */
+  .layout-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4vw;
+    flex: 1;
+    align-items: start;
+  }
+  .layout-split-asym {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 4vw;
+    flex: 1;
+    align-items: start;
+  }
+  
+  /* === Matriz de pagos === */
+  .matrix-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'JetBrains Mono', monospace;
+    margin-top: 2vh;
+  }
+  .matrix-table th, .matrix-table td {
+    padding: 1.1em 0.8em;
+    text-align: center;
+    border-bottom: 1px solid rgba(26, 18, 8, 0.15);
+  }
+  .matrix-table th {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-soft);
+    font-weight: 600;
+    border-bottom: 2px solid var(--ink);
+  }
+  .matrix-table td {
+    font-size: 1.1rem;
+    color: var(--ink);
+  }
+  .matrix-table tr td:first-child {
+    text-align: left;
+    font-family: 'Fraunces', serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    font-weight: 500;
+  }
+  .matrix-table .highlight-win {
+    background: var(--accent);
+    color: var(--paper);
+    font-weight: 700;
+    position: relative;
+  }
+  .matrix-table .highlight-lose {
+    background: rgba(139, 54, 23, 0.12);
+    color: var(--accent-deep);
+    font-weight: 700;
+  }
+
+  /* === Cards de criterios === */
+  .criterion-page {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3vw;
+    flex: 1;
+  }
+  .crit-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .crit-number {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(5rem, 10vw, 10rem);
+    font-weight: 300;
+    color: var(--accent);
+    line-height: 0.9;
+    font-style: italic;
+  }
+  .crit-name {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2rem, 3.2vw, 3rem);
+    line-height: 1;
+    margin-top: 0.2em;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .crit-tagline {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1.4rem;
+    color: var(--ink-soft);
+    margin-top: 0.4em;
+  }
+  .crit-personality {
+    background: var(--paper);
+    padding: 1.5em;
+    margin-top: 2em;
+    border-left: 3px solid var(--accent);
+  }
+  .crit-personality .mono { display: block; margin-bottom: 0.6em; color: var(--accent-deep); }
+  .crit-personality p { font-family: 'Fraunces', serif; font-size: 1.15rem; font-style: italic; line-height: 1.4; color: var(--ink); }
+  
+  .crit-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2em;
+  }
+  .calc-block {
+    background: var(--paper);
+    padding: 1.4em 1.6em;
+    border: 1px solid rgba(26, 18, 8, 0.1);
+  }
+  .calc-block-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-soft);
+    margin-bottom: 0.8em;
+  }
+  .calc-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.4em 0;
+    border-bottom: 1px dotted rgba(26, 18, 8, 0.15);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.95rem;
+  }
+  .calc-row:last-child { border: none; }
+  .calc-row .label { color: var(--ink-soft); }
+  .calc-row .value { color: var(--ink); font-weight: 500; }
+  .calc-row.winner { color: var(--accent); }
+  .calc-row.winner .label, .calc-row.winner .value { color: var(--accent); font-weight: 700; }
+  
+  .verdict {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 1.4em 1.6em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5em;
+  }
+  .verdict-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+  }
+  .verdict-result {
+    font-family: 'Fraunces', serif;
+    font-size: 2.2rem;
+    font-weight: 500;
+    line-height: 1;
+  }
+  .verdict-result em { color: var(--gold); font-style: normal; font-weight: 600; }
+  .verdict-value {
+    text-align: right;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.6rem;
+    color: var(--paper);
+    font-weight: 500;
+  }
+  .verdict-value .sub {
+    display: block;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    margin-top: 0.3em;
+  }
+
+  /* === Slide intro / problema === */
+  .problem-slide h1 { margin-bottom: 1.5vh; }
+  .problem-pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2vw;
+    margin-top: 4vh;
+  }
+  .pillar {
+    border-top: 2px solid var(--accent);
+    padding-top: 1.2em;
+  }
+  .pillar .num {
+    font-family: 'Fraunces', serif;
+    font-size: 2rem;
+    color: var(--accent);
+    font-weight: 500;
+    font-style: italic;
+  }
+  .pillar h3 {
+    font-size: 1.5rem;
+    margin: 0.4em 0 0.5em;
+    line-height: 1.1;
+  }
+  .pillar p { font-size: 1rem; color: var(--ink-soft); line-height: 1.5; }
+
+  /* === Slide datos/contexto === */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2vw;
+    margin-top: 4vh;
+  }
+  .stat {
+    border-top: 2px solid var(--ink);
+    padding-top: 1em;
+  }
+  .stat .big {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.5rem, 4.5vw, 4rem);
+    font-weight: 500;
+    color: var(--accent-deep);
+    line-height: 1;
+  }
+  .stat .lbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    letter-spacing: 0.05em;
+    margin-top: 0.5em;
+    line-height: 1.3;
+  }
+
+  /* === Razas (slide intro razas) === */
+  .breeds-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2vw;
+    margin-top: 3vh;
+    flex: 1;
+  }
+  .breed-card {
+    background: var(--paper);
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    border-bottom: 4px solid var(--ink);
+  }
+  .breed-card .breed-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-bottom: 0.5em;
+  }
+  .breed-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 2.5rem;
+    font-style: italic;
+    font-weight: 500;
+    margin-bottom: 0.3em;
+  }
+  .breed-card .origin { font-size: 0.9rem; color: var(--ink-soft); margin-bottom: 1.5em; }
+  .breed-card .desc { font-size: 0.95rem; line-height: 1.5; color: var(--ink-soft); }
+  .breed-card.discarded {
+    background: rgba(26, 18, 8, 0.04);
+    border-bottom-color: var(--accent-deep);
+  }
+  .breed-card.discarded::after {
+    content: "DESCARTADA";
+    position: absolute;
+    top: 1.5em; right: 1.5em;
+    background: var(--accent-deep);
+    color: var(--paper);
+    padding: 0.3em 0.7em;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+  }
+
+  /* === Slide final === */
+  .final-slide { background: var(--ink); color: var(--paper); }
+  .final-content { display: flex; flex-direction: column; height: 100%; }
+  .final-slide h1 { color: var(--paper); font-size: clamp(3rem, 6vw, 5rem); }
+  .final-slide h1 em { color: var(--gold); font-style: italic; }
+  .verdict-grid {
+    display: grid;
+    grid-template-columns: 4fr 2fr 3fr 2fr;
+    gap: 1px;
+    background: rgba(212, 161, 85, 0.2);
+    margin-top: 3vh;
+  }
+  .verdict-grid > div {
+    background: var(--ink);
+    padding: 1em 1.2em;
+  }
+  .verdict-grid .head {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+  }
+  .verdict-grid .name {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--paper);
+  }
+  .verdict-grid .pers {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    color: rgba(250, 245, 233, 0.7);
+  }
+  .verdict-grid .breed {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--gold);
+    font-weight: 500;
+  }
+  .verdict-grid .breed.piedmont { color: #e88c5a; }
+  .verdict-grid .val {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--paper);
+    font-size: 1rem;
+  }
+  .score-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2vw;
+    margin-top: auto;
+    padding-top: 3vh;
+  }
+  .score-card {
+    text-align: left;
+    border-top: 2px solid var(--gold);
+    padding-top: 1em;
+  }
+  .score-card .big {
+    font-family: 'Fraunces', serif;
+    font-size: 5rem;
+    font-style: italic;
+    line-height: 1;
+    color: var(--gold);
+    font-weight: 400;
+  }
+  .score-card .name {
+    font-family: 'Fraunces', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    color: var(--paper);
+    margin-top: 0.3em;
+  }
+  .score-card .desc {
+    font-size: 0.9rem;
+    color: rgba(250, 245, 233, 0.65);
+    line-height: 1.4;
+    margin-top: 0.4em;
+  }
+  .score-card.win .big { color: var(--gold); }
+  .score-card.mid .big { color: #e88c5a; }
+  .score-card.lose .big { color: rgba(250, 245, 233, 0.3); }
+
+  /* === Navigation === */
+  .nav {
+    position: fixed;
+    bottom: 2.5vh;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.4em;
+    z-index: 200;
+    background: rgba(26, 18, 8, 0.85);
+    padding: 0.6em 1.2em;
+    backdrop-filter: blur(8px);
+    align-items: center;
+  }
+  .nav button {
+    background: transparent;
+    border: none;
+    color: var(--paper);
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    padding: 0.3em 0.7em;
+    transition: opacity 0.2s;
+  }
+  .nav button:hover { color: var(--gold); }
+  .nav .counter {
+    color: var(--gold);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    min-width: 4em;
+    text-align: center;
+  }
+  .progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    background: var(--accent);
+    z-index: 200;
+    transition: width 0.3s ease;
+  }
+  
+  /* === Slide hurwicz especial === */
+  .alpha-explainer {
+    background: var(--paper);
+    padding: 1.5em;
+    margin-top: 1.5em;
+    border-left: 3px solid var(--gold);
+    font-size: 0.95rem;
+  }
+  .alpha-explainer .mono { display: block; margin-bottom: 0.5em; color: var(--accent-deep); }
+  .alpha-explainer .formula {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.1rem;
+    color: var(--ink);
+    background: var(--bg-alt);
+    padding: 0.8em 1em;
+    margin-top: 0.8em;
+    text-align: center;
+  }
+  
+  /* === Slide regret matriz === */
+  .regret-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1em;
+    margin-top: 1.5em;
+  }
+  .regret-cell {
+    background: var(--paper);
+    padding: 1em;
+    text-align: center;
+    border: 1px solid rgba(26, 18, 8, 0.1);
+  }
+  .regret-cell .race {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    margin-bottom: 0.4em;
+  }
+  .regret-cell .calc {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--ink);
+  }
+  .regret-cell.zero { background: var(--moss); color: var(--paper); }
+  .regret-cell.zero .race, .regret-cell.zero .calc { color: var(--paper); }
+  .regret-cell.winner { background: var(--accent); color: var(--paper); }
+  .regret-cell.winner .race, .regret-cell.winner .calc { color: var(--paper); }
+
+  /* === Conclusiones === */
+  .conclusion-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    margin-top: 2vh;
+  }
+  .conc-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.5em;
+    align-items: start;
+  }
+  .conc-item .num {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 3rem;
+    color: var(--accent);
+    line-height: 1;
+    font-weight: 500;
+  }
+  .conc-item .txt h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.4rem;
+    margin-bottom: 0.3em;
+  }
+  .conc-item .txt p {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+  
+  /* Citation styling */
+  .quote-block {
+    background: var(--paper);
+    padding: 2em 2.5em;
+    border-left: 4px solid var(--accent);
+    margin: 2vh 0;
+    position: relative;
+  }
+  .quote-block::before {
+    content: """;
+    position: absolute;
+    top: -0.3em; left: 0.2em;
+    font-family: 'Fraunces', serif;
+    font-size: 5rem;
+    color: var(--accent);
+    opacity: 0.3;
+    line-height: 1;
+  }
+  .quote-block p {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+  .quote-block .cite {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--ink-soft);
+    margin-top: 0.8em;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-style: normal;
+  }
+
+  /* Methodology slide */
+  .method-timeline {
+    display: flex;
+    margin-top: 4vh;
+    align-items: stretch;
+    gap: 0;
+  }
+  .method-step {
+    flex: 1;
+    padding: 1.5em 1.3em;
+    background: var(--paper);
+    border-right: 2px solid var(--bg);
+    position: relative;
+  }
+  .method-step:last-child { border-right: none; }
+  .method-step .step-n {
+    position: absolute;
+    top: -0.6em; left: 1.3em;
+    background: var(--ink);
+    color: var(--gold);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    padding: 0.3em 0.6em;
+    letter-spacing: 0.1em;
+  }
+  .method-step h4 {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    margin: 0.7em 0 0.5em;
+    color: var(--ink);
+  }
+  .method-step p { font-size: 0.85rem; color: var(--ink-soft); line-height: 1.4; }
+</style>
+</head>
+<body>
+<div class="grain"></div>
+<div class="progress" id="progress"></div>
+<div class="deck" id="deck">
+
+  <!-- SLIDE 1: PORTADA -->
+  <section class="slide cover active">
+    <div class="grid-bg"></div>
+    <div class="ornament">α</div>
+    <div class="cover-content">
+      <div>
+        <div class="cover-tag">TEORÍA DE LA DECISIÓN · TRABAJO FINAL · 2026</div>
+      </div>
+      <div>
+        <div class="cover-title">
+          Toros,<br>
+          incertidumbre<br>
+          y <em>decisiones</em>
+        </div>
+        <div style="margin-top: 1.5em; font-family: 'Fraunces', serif; font-style: italic; font-size: 1.3rem; color: rgba(250, 245, 233, 0.75); max-width: 50em;">
+          Una aplicación real de seis criterios de decisión bajo incertidumbre en empresas ganaderas turcas.
+        </div>
+      </div>
+      <div class="cover-meta">
+        <div class="cover-meta-block">
+          <div class="mono">PRESENTADO POR</div>
+          <div class="name">Sebastián Guerrero Arias</div>
+          <div class="sub">Estudiante</div>
+        </div>
+        <div class="cover-meta-block">
+          <div class="mono">ARTÍCULO ANALIZADO</div>
+          <div class="name">Şahin, Miran, Yıldırım, Önenç</div>
+          <div class="sub">J. Animal & Veterinary Advances, 7(10): 1305-1309, 2008</div>
+        </div>
+        <div class="cover-meta-block">
+          <div class="mono">TÍTULO ORIGINAL</div>
+          <div class="name">Profit Maximization of Cattle Fattening Breed</div>
+          <div class="sub">Based on Characteristics of Producers: An Application of Game Theory</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 2: EL PROBLEMA -->
+  <section class="slide problem-slide">
+    <div class="topbar">
+      <span class="mono">01 — Contexto</span>
+      <span class="mono">İzmir, Turquía · 1999–2007</span>
+    </div>
+    <h1 class="display">El problema del ganadero turco.</h1>
+    <div class="h-sub" style="margin-top: 1em; max-width: 38em;">
+      Un productor debe decidir <strong style="color: var(--ink);">qué raza de toro comprar</strong> para engordar y vender — pero los precios del mercado son inciertos.
+    </div>
+    <div class="problem-pillars">
+      <div class="pillar">
+        <span class="num">01</span>
+        <h3>Riesgo de producción</h3>
+        <p>El animal puede no engordar como se espera, o enfermarse. Los costos de alimentación fluctúan.</p>
+      </div>
+      <div class="pillar">
+        <span class="num">02</span>
+        <h3>Riesgo de mercado</h3>
+        <p>El precio de la carne al momento de vender es desconocido. Los productores <em>no controlan</em> este factor.</p>
+      </div>
+      <div class="pillar">
+        <span class="num">03</span>
+        <h3>Tres razas posibles</h3>
+        <p>Holstein, Limuzin (cruce francés) o Piedmont (cruce italiano). ¿Cuál maximiza la ganancia bajo incertidumbre?</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 3: LAS 3 RAZAS -->
+  <section class="slide">
+    <div class="topbar">
+      <span class="mono">02 — Alternativas</span>
+      <span class="mono">A1, A2, A3</span>
+    </div>
+    <h1 class="h-title">Tres razas, una decisión.</h1>
+    <div class="h-sub" style="margin-top: 0.6em; max-width: 50em;">
+      El estudio compara las tres razas disponibles para el ganadero turco. Spoiler: una de ellas pierde bajo cualquier criterio.
+    </div>
+    <div class="breeds-grid">
+      <div class="breed-card discarded">
+        <div>
+          <div class="breed-tag">A1 · ALTERNATIVA</div>
+          <h3>Holstein</h3>
+          <div class="origin">Origen: Países Bajos / Alemania</div>
+        </div>
+        <p class="desc">La clásica blanca y negra. Más conocida por su producción lechera. En este contexto turco resulta dominada: tiene el peor pago en ambos escenarios.</p>
+      </div>
+      <div class="breed-card">
+        <div>
+          <div class="breed-tag">A2 · ALTERNATIVA</div>
+          <h3>Limuzin</h3>
+          <div class="origin">Cruce Limousin × Holstein (Francia)</div>
+        </div>
+        <p class="desc">Famosa por su musculatura intermedia. Alto potencial de ganancia si las condiciones son favorables, pero también la mayor caída si el mercado se deteriora.</p>
+      </div>
+      <div class="breed-card">
+        <div>
+          <div class="breed-tag">A3 · ALTERNATIVA</div>
+          <h3>Piedmont</h3>
+          <div class="origin">Cruce Piedmontese × Holstein (Italia)</div>
+        </div>
+        <p class="desc">Raza italiana de doble musculatura. Ofrece el piso más alto cuando todo sale mal — el favorito del productor cauto.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 4: METODOLOGÍA -->
+  <section class="slide">
+    <div class="topbar">
+      <span class="mono">03 — Metodología</span>
+      <span class="mono">Datos empíricos reales</span>
+    </div>
+    <h1 class="h-title">Cómo construyeron los datos.</h1>
+    <div class="h-sub" style="margin-top: 0.6em; max-width: 55em;">
+      No son números inventados: <strong style="color: var(--ink);">21 toros reales engordados</strong> en un instituto agrícola turco bajo condiciones controladas.
+    </div>
+    <div class="stats-row">
+      <div class="stat">
+        <div class="big">21</div>
+        <div class="lbl">Toros del experimento<br>(7 por raza)</div>
+      </div>
+      <div class="stat">
+        <div class="big">280</div>
+        <div class="lbl">Días de engorde<br>(10 meses × 28 días)</div>
+      </div>
+      <div class="stat">
+        <div class="big">5°</div>
+        <div class="lbl">Mes óptimo de venta<br>(ganancia máxima)</div>
+      </div>
+      <div class="stat">
+        <div class="big">2007</div>
+        <div class="lbl">Precios actualizados<br>(Meat & Fish Association)</div>
+      </div>
+    </div>
+    <div class="method-timeline">
+      <div class="method-step">
+        <span class="step-n">PASO 1</span>
+        <h4>Experimento controlado</h4>
+        <p>21 toros en el Aegean Agricultural Research Institute, İzmir. Registro mensual de peso y consumo de alimento.</p>
+      </div>
+      <div class="method-step">
+        <span class="step-n">PASO 2</span>
+        <h4>Cálculo de ganancia</h4>
+        <p>Ganancia neta = Valor bruto (precio × peso) − Costos de producción, calculado mes a mes.</p>
+      </div>
+      <div class="method-step">
+        <span class="step-n">PASO 3</span>
+        <h4>Identificar período óptimo</h4>
+        <p>Comparando los 10 meses, el quinto resultó el más rentable para todas las razas.</p>
+      </div>
+      <div class="method-step">
+        <span class="step-n">PASO 4</span>
+        <h4>Definir escenarios</h4>
+        <p>Dos estados de la naturaleza: B1 (condiciones buenas) y B2 (malas). Aplicación de seis criterios.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 5: LA MATRIZ DE PAGOS -->
+  <section class="slide">
+    <div class="topbar">
+      <span class="mono">04 — Matriz de pagos</span>
+      <span class="mono">USD por cabeza · Mes 5</span>
+    </div>
+    <div class="layout-split-asym">
+      <div>
+        <h1 class="h-title">La matriz central<br>del estudio.</h1>
+        <p class="body" style="margin-top: 1.5em; max-width: 30em;">
+          Toda la decisión se apoya en estos seis números. Tres razas (filas), dos escenarios de mercado (columnas), y un valor de ganancia neta en dólares por cabeza.
+        </p>
+        <div class="quote-block" style="margin-top: 2em;">
+          <p>"While the minimum net profit represented the improvement in production and marketing conditions, the average net profit was the reflection of deterioration..."</p>
+          <span class="cite">— Şahin et al. 2008, p.6</span>
+        </div>
+      </div>
+      <div>
+        <table class="matrix-table">
+          <thead>
+            <tr>
+              <th>Raza</th>
+              <th>B1 · Buenas</th>
+              <th>B2 · Malas</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>A1 · Holstein</td>
+              <td>$368.20</td>
+              <td>$200.71</td>
+            </tr>
+            <tr>
+              <td>A2 · Limuzin</td>
+              <td class="highlight-win">$588.33</td>
+              <td>$272.58</td>
+            </tr>
+            <tr>
+              <td>A3 · Piedmont</td>
+              <td>$449.47</td>
+              <td class="highlight-lose">$298.77</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="body" style="margin-top: 1.5em; font-size: 0.9rem;">
+          <span class="marker">p &lt; 0.05</span>&nbsp;&nbsp; Diferencias entre razas son estadísticamente significativas (ANOVA de una vía).
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 6: MAXIMAX -->
+  <section class="slide">
+    <div class="topbar">
+      <span class="mono">05 — Criterio 1 de 6</span>
+      <span class="mono">Maximax</span>
+    </div>
+    <div class="criterion-page">
+      <div class="crit-left">
+        <div class="crit-number">01</div>
+        <div class="crit-name">Maximax</div>
+        <div class="crit-tagline">el productor optimista</div>
+        <div class="crit-personality">
+          <span class="mono">Personalidad</span>
+          <p>"Voy a apostar al mejor escenario posible. Si todo sale bien, quiero la mayor ganancia."</p>
+        </div>
+        <p class="body" style="margin-top: 1.5em;">
+          <strong class="body-strong">Regla:</strong> de cada raza, mirar el MEJOR pago posible. Después elegir el máximo entre esos máximos.
+        </p>
+      </div>
+      <div class="crit-right">
+        <div class="calc-block">
+          <div class="calc-block-title">Mejor pago de cada raza (columna B1)</div>
+          <div class="calc-row"><span class="label">Holstein</span><span class="value">$368.20</span></div>
+          <div class="calc-row winner"><span class="label">Limuzin</span><span class="value">$588.33 ←</span></div>
+          <div class="calc-row"><span class="label">Piedmont</span><span class="value">$449.47</span></div>
+        </div>
+        <div class="calc-block">
+          <div class="calc-block-title">Máximo entre los máximos</div>
+          <div class="calc-row winner"><span class="label">max(368.20 ; 588.33 ; 449.47)</span><span class="value">= $588.33</span></div>
+        </div>
+        <div class="verdict">
+          <div>
+            <div class="verdict-label">DECISIÓN ÓPTIMA</div>
+            <div class="verdict-result"><em>Limuzin</em></div>
+          </div>
+          <div class="verdict-value">
+            $588.33
+            <span class="sub">USD / CABEZA</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 7: WALD -->
+  <section class="slide">
+    <div class="topbar">
+      <span class="mono">06 — Criterio 2 de 6</span>
+      <span class="mono">Wald (maximin)</span>
+    </div>
+    <div class="criterion-page">
+      <div class="crit-left">
+        <div class="crit-number">02</div>
+        <div class="crit-name">Wald</div>
+        <div class="crit-tagline">el productor pesimista</div>
+        <div class="crit-personality">
+          <span class="mono">Personalidad</span>
+          <p>"Asumo que todo va a salir mal. Me preparo para el peor caso y elijo lo menos malo."</p>
+        </div>
+        <p class="body" style="margin-top: 1.5em;">
+          <strong class="body-strong">Regla:</strong> de cada raza, mirar el PEOR pago posible. Después elegir el máximo entre esos peores (maximin).
+        </p>
+      </div>
+      <div class="crit-right">
+        <div class="calc-block">
+          <div class="calc-block-title">Peor pago de cada raza (columna B2)</div>
+          <div class="calc-row"><span class="label">Holstein</span><span class="value">$200.71</span></div>
+          <div class="calc-row"><span class="label">Limuzin</span><span class="value">$272.58</span></div>
+          <div class="calc-row winner"><span class="label">Piedmont</span><span class="value">$298.77 ←</span></div>
+        </div>
+        <div class="calc-block">
+          <div class="calc-block-title">Máximo entre los mínimos</div>
+          <div class="calc-row winner"><span class="label">max(200.71 ; 272.58 ; 298.77)</span><span class="value">= $298.77</span></div>
+        </div>
+        <div class="verdict">
+          <div>
+            <div class="verdict-label">DECISIÓN ÓPTIMA</div>
+            <div class="verdict-result"><em>Piedmont</em></div>
+          </div>
+          <div class="verdict-value">
+            $298.77
+            <span class="sub">GARANTIZADO MÍN.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 8: SAVAGE -->
+  <section class="slide">
+    <div class="topbar">
+      <span class="mono">07 — Criterio 3 de 6</span>
+      <span class="mono">Savage (minimax regret)</span>
+    </div>
+    <div class="criterion-page">
+      <div class="crit-left">
+        <div class="crit-number">03</div>
+        <div class="crit-name">Savage</div>
+        <div class="crit-tagline">el que odia arrepentirse</div>
+        <div class="crit-personality">
+          <span class="mono">Personalidad</span>
+          <p>"No quiero mirar atrás y decir: 'debí haber comprado la otra raza'. Minimizo el arrepentimiento máximo."</p>
+        </div>
+        <p class="body" style="margin-top: 1.5em; font-size: 0.92rem;">
+          <strong class="body-strong">Concepto clave:</strong> el arrepentimiento es la diferencia entre lo que <em>podías</em> haber ganado y lo que ganaste. Equivale al costo de oportunidad.
+        </p>
+      </div>
+      <div class="crit-right">
+        <div class="calc-block">
+          <div class="calc-block-title">Matriz de arrepentimiento (mejor de columna − valor)</div>
+          <div class="regret-grid">
+            <div class="regret-cell">
+              <div class="race">Holstein · B1</div>
+              <div class="calc">588.33 − 368.20<br>= <strong>220.13</strong></div>
+            </div>
+            <div class="regret-cell">
+              <div class="race">Holstein · B2</div>
+              <div class="calc">298.77 − 200.71<br>= <strong>98.06</strong></div>
+            </div>
+            <div class="regret-cell zero">
+              <div class="race">Limuzin · B1</div>
+              <div class="calc">588.33 − 588.33<br>= <strong>0</strong></div>
+            </div>
+            <div class="regret-cell winner">
+              <div class="race">Limuzin · B2</div>
+              <div class="calc">298.77 − 272.58<br>= <strong>26.19</strong></div>
+            </div>
+            <div class="regret-cell">
+              <div class="race">Piedmont · B1</div>
+              <div class="calc">588.33 − 449.47<br>= <strong>138.86</strong></div>
+            </div>
+            <div class="regret-cell zero">
+              <div class="race">Piedmont · B2</div>
+              <div class="calc">298.77 − 298.77<br>= <strong>0</strong></div>
+            </div>
+          </div>
+        </div>
+        <div class="verdict">
+          <div>
+            <div class="verdict-label">DECISIÓN: MIN(MAX REGRET)</div>
+            <div class="verdict-result"><em>Limuzin</em></div>
+          </div>
+          <div class="verdict-value">
+            $26.19
+            <span class="sub">REGRET MÁX. MÍNIMO</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 9: HURWICZ -->
+  <section class="slide">
+    <div class="topbar">
+      <span class="mono">08 — Criterio 4 de 6</span>
+      <span class="mono">Hurwicz · α = 0.4</span>
+    </div>
+    <div class="criterion-page">
+      <div class="crit-left">
+        <div class="crit-number">04</div>
+        <div class="crit-name">Hurwicz</div>
+        <div class="crit-tagline">el realista equilibrado</div>
+        <div class="crit-personality">
+          <span class="mono">Personalidad</span>
+          <p>"Ni todo va a salir bien, ni todo va a salir mal. Pondero ambos extremos según mi nivel de optimismo."</p>
+        </div>
+        <div class="alpha-explainer">
+          <span class="mono">Coeficiente de optimismo α</span>
+          <div class="formula">H = α(mejor) + (1−α)(peor)</div>
+          <p style="margin-top: 0.8em; font-size: 0.88rem; color: var(--ink-soft);">
+            El paper usa <strong style="color: var(--ink);">α = 0.4</strong>, modelando un productor levemente pesimista (40% optimismo, 60% pesimismo).
+          </p>
+        </div>
+      </div>
+      <div class="crit-right">
+        <div class="calc-block">
+          <div class="calc-block-title">Cálculo H = 0.4(mejor) + 0.6(peor)</div>
+          <div class="calc-row"><span class="label">Holstein: 0.4(368.20) + 0.6(200.71)</span><span class="value">$267.71</span></div>
+          <div class="calc-row winner"><span class="label">Limuzin: 0.4(588.33) + 0.6(272.58)</span><span class="value">$398.88 ←</span></div>
+          <div class="calc-row"><span class="label">Piedmont: 0.4(449.47) + 0.6(298.77)</span><span class="value">$359.05</span></div>
+        </div>
+        <div class="calc-block">
+          <div class="calc-block-title">Análisis de sensibilidad · umbral crítico</div>
+          <div class="calc-row"><span class="label">Si α &gt; 0.16 →</span><span class="value">Limuzin</span></div>
+          <div class="calc-row"><span class="label">Si α &lt; 0.16 →</span><span class="value">Piedmont</span></div>
+        </div>
+        <div class="verdict">
+          <div>
+            <div class="verdict-label">DECISIÓN ÓPTIMA</div>
+            <div class="verdict-result"><em>Limuzin</em></div>
+          </div>
+          <div class="verdict-value">
+            $398.88
+            <span class="sub">VALOR HURWICZ</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 10: UTILIDAD -->
+  <section class="slide">
+    <div class="topbar">
+      <span class="mono">09 — Criterio 5 de 6</span>
+      <span class="mono">Utility</span>
+    </div>
+    <div class="criterion-page">
+      <div class="crit-left">
+        <div class="crit-number">05</div>
+        <div class="crit-name">Utilidad</div>
+        <div class="crit-tagline">el averso al riesgo</div>
+        <div class="crit-personality">
+          <span class="mono">Personalidad</span>
+          <p>"No me inclino mucho al riesgo. Mido cada raza por su ganancia sobre el piso absoluto y elijo la más sólida en su peor caso."</p>
+        </div>
+        <p class="body" style="margin-top: 1.5em; font-size: 0.92rem;">
+          <strong class="body-strong">Procedimiento:</strong> normalizar cada columna restando su mínimo. Luego aplicar minimax sobre la matriz de utilidades resultante.
+        </p>
+      </div>
+      <div class="crit-right">
+        <div class="calc-block">
+          <div class="calc-block-title">Matriz de utilidad (cada valor − mínimo de su columna)</div>
+          <div class="calc-row"><span class="label">Holstein · B1 = 368.20 − 368.20</span><span class="value">$0</span></div>
+          <div class="calc-row"><span class="label">Holstein · B2 = 200.71 − 200.71</span><span class="value">$0</span></div>
+          <div class="calc-row"><span class="label">Limuzin · B1 = 588.33 − 368.20</span><span class="value">$220.13</span></div>
+          <div class="calc-row"><span class="label">Limuzin · B2 = 272.58 − 200.71</span><span class="value">$71.87</span></div>
+          <div class="calc-row winner"><span class="label">Piedmont · B1 = 449.47 − 368.20</span><span class="value">$81.27 ←</span></div>
+          <div class="calc-row"><span class="label">Piedmont · B2 = 298.77 − 200.71</span><span class="value">$98.06</span></div>
+        </div>
+        <div class="verdict">
+          <div>
+            <div class="verdict-label">DECISIÓN ÓPTIMA</div>
+            <div class="verdict-result"><em>Piedmont</em></div>
+          </div>
+          <div class="verdict-value">
+            $81.27
+            <span class="sub">UTILIDAD MÍN. MAX.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 11: LAPLACE -->
+  <section class="slide">
+    <div class="topbar">
+      <span class="mono">10 — Criterio 6 de 6</span>
+      <span class="mono">Laplace · P = 0.5</span>
+    </div>
+    <div class="criterion-page">
+      <div class="crit-left">
+        <div class="crit-number">06</div>
+        <div class="crit-name">Laplace</div>
+        <div class="crit-tagline">el prudente sin información</div>
+        <div class="crit-personality">
+          <span class="mono">Personalidad</span>
+          <p>"No tengo información para preferir un escenario sobre otro. Los trato como equiprobables y elijo el mejor promedio."</p>
+        </div>
+        <div class="alpha-explainer">
+          <span class="mono">Principio de razón insuficiente</span>
+          <p style="font-size: 0.9rem; color: var(--ink-soft);">
+            Formulado por <strong style="color: var(--ink);">Pierre-Simon Laplace en 1812</strong>. Si no tengo razones para distinguir entre escenarios, los asumo igualmente probables.
+          </p>
+        </div>
+      </div>
+      <div class="crit-right">
+        <div class="calc-block">
+          <div class="calc-block-title">Promedio simple con P(B1) = P(B2) = 0.5</div>
+          <div class="calc-row"><span class="label">Holstein: 0.5(368.20) + 0.5(200.71)</span><span class="value">$284.46</span></div>
+          <div class="calc-row winner"><span class="label">Limuzin: 0.5(588.33) + 0.5(272.58)</span><span class="value">$430.46 ←</span></div>
+          <div class="calc-row"><span class="label">Piedmont: 0.5(449.47) + 0.5(298.77)</span><span class="value">$374.12</span></div>
+        </div>
+        <div class="calc-block" style="background: var(--bg-alt);">
+          <div class="calc-block-title">Curiosidad matemática</div>
+          <p style="font-size: 0.88rem; color: var(--ink); line-height: 1.5;">
+            Laplace coincide con Hurwicz cuando α = 0.5. Son fórmulas idénticas pero filosofías distintas: una refleja <em>información</em>, la otra <em>personalidad</em>.
+          </p>
+        </div>
+        <div class="verdict">
+          <div>
+            <div class="verdict-label">DECISIÓN ÓPTIMA</div>
+            <div class="verdict-result"><em>Limuzin</em></div>
+          </div>
+          <div class="verdict-value">
+            $430.46
+            <span class="sub">VALOR ESPERADO</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 12: SÍNTESIS Y CONCLUSIONES -->
+  <section class="slide final-slide">
+    <div class="final-content">
+      <div class="topbar">
+        <span class="mono" style="color: var(--gold);">11 — Síntesis</span>
+        <span class="mono" style="color: var(--gold);">Resultados agregados</span>
+      </div>
+      <h1>El veredicto<br>de los <em>seis criterios</em>.</h1>
+      <div class="verdict-grid">
+        <div class="head">CRITERIO</div>
+        <div class="head">PERSONALIDAD</div>
+        <div class="head">RAZA</div>
+        <div class="head">VALOR</div>
+
+        <div class="name">Maximax</div>
+        <div class="pers">Optimista</div>
+        <div class="breed">Limuzin</div>
+        <div class="val">$588.33</div>
+
+        <div class="name">Wald</div>
+        <div class="pers">Pesimista</div>
+        <div class="breed piedmont">Piedmont</div>
+        <div class="val">$298.77</div>
+
+        <div class="name">Savage</div>
+        <div class="pers">Anti-arrepentimiento</div>
+        <div class="breed">Limuzin</div>
+        <div class="val">$26.19 regret</div>
+
+        <div class="name">Hurwicz (α=0.4)</div>
+        <div class="pers">Equilibrado</div>
+        <div class="breed">Limuzin</div>
+        <div class="val">$398.88</div>
+
+        <div class="name">Utilidad</div>
+        <div class="pers">Averso al riesgo</div>
+        <div class="breed piedmont">Piedmont</div>
+        <div class="val">$81.27</div>
+
+        <div class="name">Laplace</div>
+        <div class="pers">Prudente</div>
+        <div class="breed">Limuzin</div>
+        <div class="val">$430.46</div>
+      </div>
+      <div class="score-row">
+        <div class="score-card win">
+          <div class="big">4 / 6</div>
+          <div class="name">Limuzin</div>
+          <div class="desc">Decisión dominante. Recomendada bajo cuatro de seis criterios — robusta frente a múltiples perfiles de riesgo.</div>
+        </div>
+        <div class="score-card mid">
+          <div class="big">2 / 6</div>
+          <div class="name">Piedmont</div>
+          <div class="desc">Refugio defensivo. La opción de los productores cautelosos, aversos al riesgo y pesimistas.</div>
+        </div>
+        <div class="score-card lose">
+          <div class="big">0 / 6</div>
+          <div class="name">Holstein</div>
+          <div class="desc">Descartada. Ningún criterio la recomienda — está dominada por las otras dos razas.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 13: CONCLUSIÓN FINAL -->
+  <section class="slide">
+    <div class="topbar">
+      <span class="mono">12 — Cierre</span>
+      <span class="mono">Tres lecciones</span>
+    </div>
+    <h1 class="h-title">Lo que el paper nos enseña.</h1>
+    <div class="h-sub" style="margin-top: 0.6em; max-width: 50em;">
+      Más allá de los toros, este estudio deja tres lecciones sobre cómo tomar decisiones bajo incertidumbre en cualquier empresa.
+    </div>
+    <div class="conclusion-list">
+      <div class="conc-item">
+        <span class="num">01</span>
+        <div class="txt">
+          <h3>No existe "una respuesta correcta", existe la respuesta consistente.</h3>
+          <p>La mejor raza depende del perfil de riesgo del decisor. Un productor optimista que elige Piedmont está dejando dinero sobre la mesa; uno averso al riesgo que elige Limuzin se sobreexpone.</p>
+        </div>
+      </div>
+      <div class="conc-item">
+        <span class="num">02</span>
+        <div class="txt">
+          <h3>La convergencia de criterios fortalece la decisión.</h3>
+          <p>Cuatro criterios filosóficamente distintos coinciden en Limuzin. Esa convergencia es evidencia de que Limuzin es una decisión <em>robusta</em>, válida bajo casi cualquier lente de análisis.</p>
+        </div>
+      </div>
+      <div class="conc-item">
+        <span class="num">03</span>
+        <div class="txt">
+          <h3>La teoría de decisión es una herramienta de política pública.</h3>
+          <p>El paper cierra recomendando al gobierno turco estabilizar los precios. Si la incertidumbre se reduce, menos productores recurren a criterios cautelosos y la economía agrícola se vuelve más eficiente.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 14: GRACIAS -->
+  <section class="slide cover">
+    <div class="grid-bg"></div>
+    <div class="ornament" style="font-size: 18rem; top: -2vh; right: -2vw; color: var(--gold); opacity: 0.18;">"</div>
+    <div class="cover-content" style="justify-content: center;">
+      <div>
+        <div class="cover-tag">FIN DE LA PRESENTACIÓN</div>
+        <div class="cover-title" style="margin-top: 1em; font-size: clamp(2.5rem, 5.5vw, 5rem);">
+          <em>Gracias.</em>
+        </div>
+        <div style="margin-top: 1.5em; font-family: 'Fraunces', serif; font-style: italic; font-size: 1.4rem; color: rgba(250, 245, 233, 0.75); max-width: 36em;">
+          ¿Preguntas, comentarios o dudas sobre alguno de los criterios?
+        </div>
+        <div style="margin-top: 4em; display: flex; gap: 3em;">
+          <div>
+            <div class="mono" style="color: var(--gold);">SUSTENTADO POR</div>
+            <div style="font-family: 'Fraunces', serif; font-size: 1.3rem; color: var(--paper); margin-top: 0.4em;">Sebastián Guerrero Arias</div>
+          </div>
+          <div>
+            <div class="mono" style="color: var(--gold);">REFERENCIA</div>
+            <div style="font-family: 'Fraunces', serif; font-size: 1rem; color: rgba(250, 245, 233, 0.7); margin-top: 0.4em;">Şahin et al. (2008). J. Animal & Veterinary Advances, 7(10): 1305-1309.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<nav class="nav">
+  <button id="prev">← Anterior</button>
+  <span class="counter" id="counter">01 / 14</span>
+  <button id="next">Siguiente →</button>
+</nav>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const counter = document.getElementById('counter');
+  const progress = document.getElementById('progress');
+  let current = 0;
+  const total = slides.length;
+
+  function go(i) {
+    if (i < 0 || i >= total) return;
+    slides[current].classList.remove('active');
+    current = i;
+    slides[current].classList.add('active');
+    counter.textContent = String(current + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
+    progress.style.width = ((current + 1) / total * 100) + '%';
+  }
+
+  document.getElementById('next').addEventListener('click', () => go(current + 1));
+  document.getElementById('prev').addEventListener('click', () => go(current - 1));
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); go(current + 1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); go(current - 1); }
+    if (e.key === 'Home') go(0);
+    if (e.key === 'End') go(total - 1);
+  });
+
+  go(0);
+</script>
+</body>
+</html>
